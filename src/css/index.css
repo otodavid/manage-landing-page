@@ -24,29 +24,33 @@ a {
 }
 
 button {
-    /* display: block; */
     width: 9rem;
     color: var(--bg-grey);
     background-color: var(--accent-orange);
     border: 0;
-    padding: .8rem 1rem;
+    padding: 1rem;
     border-radius: 2rem;
     box-shadow: 0 17px 10px -5px hsla(12, 88%, 59%, 0.3);
-    font-weight: 700;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: hsl(13, 97%, 76%);
+    cursor: pointer;
 }
 
 main {
     background: url(../images/bg-tablet-pattern.svg) 55px -60px / 100% no-repeat, url(../images/bg-tablet-pattern.svg) 190% 30% / 65% no-repeat;
+    position: relative;
 }
 
 nav {
     padding: 2rem 1.5rem;
     display: flex;
     justify-content: space-between;
-    position: relative;
 }
 
-.logo {
+nav .logo {
     width: 35%;
 }
 
@@ -55,24 +59,59 @@ nav {
 }
 
 #main-nav {
+    list-style-type: none;
+}
+
+#main-nav.hide {
     display: none;
+}
+
+#main-nav.show {
+    display: block;
     position: absolute;
-    top: 5rem;
+    top: 0;
     left: 0;
     right: 0;
-    list-style-type: none;
+    width: 100%;
+    margin: 0 auto;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.589), rgba(255, 255, 255, 0.219));
+    height: 730px;
+    padding-top: 90px;
+}
+
+#main-nav li {
+    background-color: rgb(255, 255, 255);
+    text-align: center;
     width: 90%;
     margin: 0 auto;
-    padding: 1rem 0;
-    border-radius: 4px;
+}
+
+#main-nav li:first-of-type {
+    border-radius: 4px 4px 0 0;
+    padding-top: 7%;
+}
+
+#main-nav li:last-of-type {
+    border-radius: 0 0 4px 4px;
+    padding-bottom: 7%;
 }
 
 #main-nav a {
     display: block;
     color: var(--clr-primary);
-    font-weight: bolder;
+    font-weight: 700;
     padding: 1rem;
     text-align: center;
+    background-color: var(--bg-nav);
+}
+
+#main-nav a:hover {
+    color: hsla(228, 40%, 23%, 0.5);
+}
+
+.mobile-menu,
+.logo {
+    z-index: 5;
 }
 
 nav button {
@@ -126,7 +165,7 @@ h3 {
 }
 
 .services-cards {
-    padding: 1rem 0rem 1rem 1rem;
+    padding: 1rem 0rem 1rem 1.2rem;
 }
 
 .card {
@@ -149,7 +188,7 @@ h3 {
     background-color: var(--accent-orange);
     margin-right: 1rem;
     display: inline-block;
-    width: 4rem;
+    width: 4.5rem;
     padding: .5rem 1rem;
     border-radius: 20px;
     text-align: center;
@@ -157,9 +196,11 @@ h3 {
 }
 
 .summary {
-    padding: 1rem 0;
+    padding: .5rem 0;
     color: var(--clr-secondary);
     line-height: 1.6;
+    width: 90%;
+    font-size: .9rem;
 }
 
 .testimonials {
@@ -174,11 +215,13 @@ h3 {
 .swiper-slide {
     text-align: center;
     display: flex;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
 }
 
 .slide-content {
+    flex: 1 0 auto;
     position: relative;
     background-color: var(--bg-grey);
     width: 90%;
@@ -231,11 +274,11 @@ h3 {
 }
 
 .testimonials button {
-    margin: 1.5rem 0 ;
+    margin: 1.5rem 0;
 }
 
 .contact-us {
-    background-color: var(--accent-orange);
+    background: var(--accent-orange) url(../images/bg-simplify-section-mobile.svg) 0px / 28% 79% no-repeat;
     padding: 5rem 1.5rem;
     text-align: center;
 }
@@ -250,7 +293,10 @@ h3 {
 .contact-us button {
     background-color: var(--bg-grey);
     color: var(--accent-orange);
-    font-weight: 500;
+}
+
+.contact-us button:hover {
+    background-color: rgb(250, 250, 250);
 }
 
 footer {
@@ -285,9 +331,8 @@ input#email {
     list-style-type: none;
     display: flex;
     flex-flow: column wrap;
-    /* justify-content: space-around; */
-    align-content: space-between; 
-    height: 196px;
+    align-content: space-between;
+    height: 150px;
     width: 80%;
     margin: 0 auto;
     padding: 1.5rem 0;
@@ -299,11 +344,27 @@ input#email {
     font-size: .9rem;
 }
 
+#footer-nav a:first-of-type {
+    padding-top: 0;
+}
+
+#footer-nav a:hover {
+    color: var(--accent-orange);
+}
+
 .socials {
     display: flex;
     justify-content: space-around;
     width: 70%;
     margin: 0 auto;
+}
+
+.socials div:hover svg path {
+    fill: var(--accent-orange);
+}
+
+.socials div {
+    cursor: pointer;
 }
 
 footer .logo {
@@ -325,15 +386,8 @@ footer .logo {
     text-align: center;
 }
 
-
-
-
-
-
-
-
 .attribution {
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
     padding: 1rem;
 }
@@ -343,3 +397,253 @@ footer .logo {
     display: inline;
 }
 
+
+@media screen and (min-width: 1000px) {
+
+    main {
+        background-position: 114% -147px, -540px 75%;
+        background-size: 50%, 62%;
+    }
+
+    nav {
+        padding: 3% 10%;
+    }
+
+    nav .logo {
+        width: 10%;
+        align-self: center;
+    }
+
+    #main-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 38%;
+    }
+
+    #main-nav li:first-of-type,
+    #main-nav li:last-of-type {
+        padding: 0;
+    }
+
+    #main-nav li {
+        background-color: transparent;
+        width: max-content;
+        margin: 0;
+    }
+
+    #main-nav a {
+        padding: 0;
+        font-size: .9rem;
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+
+    button {
+        display: block;
+    }
+
+    nav button {
+        display: block;
+    }
+
+    .intro {
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        justify-content: space-between;
+        padding: 3% 10%;
+        width: 100%;
+    }
+
+    .content {
+        text-align: left;
+        padding: 0;
+        flex: 0 1 45%;
+    }
+
+    .intro .content {
+        padding-top: 4rem;
+    }
+
+    .intro button {
+        margin-top: 1rem;
+    }
+
+    .intro-bg {
+        flex: 0 1 45%;
+    }
+
+    h1,
+    h2,
+    h3 {
+        text-align: left;
+        line-height: 1.2;
+    }
+
+    .content h1 {
+        font-size: 3rem;
+    }
+
+    .content p {
+        padding: 1.5rem 0;
+        width: 65%;
+    }
+
+    .services {
+        padding: 5% 10%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+     .content h2, h2 {
+        font-size: 2.5rem;
+        padding: 0;
+    }
+
+    .services-cards {
+        padding: 0;
+        flex: 0 1 48%;
+    }
+
+    .heading {
+        background-color: transparent;
+    }
+
+    .heading span {
+        margin-left: 0.5rem;
+        margin-right: 1.8rem;
+    }
+
+    .summary {
+        width: 440px;
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    .testimonials h2 {
+        text-align: center;
+        padding-bottom: 2.5rem;
+    }
+
+    .swiper-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .swiper-wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .slide-content {
+        width: 100%;
+        padding: 1rem 1.5rem;
+    }
+
+    .avatar {
+        width: 100px;
+        top: -3rem;
+    }
+
+    .testimony {
+        margin-top: 4rem;
+    }
+
+    .testimony h3 {
+        text-align: center;
+    }
+
+    .swiper-pagination-bullet {
+        display: none;
+    }
+
+    .testimonials button {
+        margin: 0 auto 6rem;
+    }
+
+    .contact-us {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 10%;
+        margin-top: 2rem;
+        background: var(--accent-orange) url(../images/bg-simplify-section-desktop.svg) 230px -180px / 1500px no-repeat
+    }
+
+    .contact-us p {
+        flex-basis: 40%;
+        text-align: left;
+        padding: 1rem 0;
+    }
+
+    .contact-us button {
+        width: 15%;
+    }
+
+    footer {
+        display: grid;
+        grid-template-areas:
+            'logo    nav newsletter'
+            'socials nav copyright';
+        grid-template-columns: 1fr 2fr 1.5fr;
+        gap: 4%;
+        padding: 4% 10%;
+    }
+
+    footer .logo {
+        grid-area: logo;
+        width: 100%;
+        margin: 0;
+    }
+
+    #footer-nav {
+        grid-area: nav;
+        padding: 0;
+        margin: 0;
+        height: 150px;
+    }
+
+    #footer-nav a {
+        padding: 1rem;
+    }
+
+    .newsletter {
+        grid-area: newsletter;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    input#email {
+        width: 58%;
+        margin-right: .5rem;
+    }
+
+    .newsletter button {
+        width: 20%;
+    }
+
+    .socials {
+        grid-area: socials;
+        width: 70%;
+        margin: 0;
+    }
+
+    .copyright {
+        grid-area: copyright;
+        text-align: right;
+    }
+
+    .socials,
+    .copyright {
+        padding-top: 3rem;
+    }
+
+
+
+
+}
