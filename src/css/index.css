@@ -152,6 +152,10 @@ h3 {
     padding-bottom: 1rem;
 }
 
+.content button {
+    margin-top: 1rem;
+}
+
 .services {
     padding: 2rem 0 0;
 }
