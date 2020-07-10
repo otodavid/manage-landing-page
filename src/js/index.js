@@ -1,3 +1,8 @@
+const mobileMenu = document.querySelector('.mobile-menu');
+const MainNav = document.querySelector('#main-nav');
+const newsletter = document.querySelector('.newsletter');
+
+// show a particular style of swiper depending on screen size
 const mobileSwipper = function () {
   var swiper = new Swiper('.swiper-container', {
     pagination: {
@@ -13,7 +18,7 @@ const mobileSwipper = function () {
 const desktopSwipper = function () {
   var swiper = new Swiper('.swiper-container', {
     slidesPerView: 2.5,
-    spaceBetween:30,
+    spaceBetween: 30,
     freeMode: true,
     pagination: {
       el: '.swiper-pagination',
@@ -22,21 +27,20 @@ const desktopSwipper = function () {
   });
 }
 
-window.addEventListener('load', () => {
+const swiperStyle = function () { 
   const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  console.log(width)
-  if(width < 1000) {
+  if (width < 1000) {
     MainNav.classList.add('hide');
     mobileSwipper();
   } else {
     desktopSwipper();
   }
-})
+ }
 
-const mobileMenu = document.querySelector('.mobile-menu');
-const MainNav = document.querySelector('#main-nav');
+window.addEventListener('load', swiperStyle);
 
-mobileMenu.addEventListener('click', () => {
+// mobile menu
+const toggleMobileMenu = function () {
   if (MainNav.classList.contains('hide')) {
     MainNav.classList.add('show');
     MainNav.classList.remove('hide');
@@ -46,6 +50,36 @@ mobileMenu.addEventListener('click', () => {
     MainNav.classList.add('hide');
     mobileMenu.firstElementChild.src = './images/icon-hamburger.svg';
   }
+}
 
+mobileMenu.addEventListener('click', toggleMobileMenu);
 
-})
+// validate form
+const validateForm = function (e) {
+  e.preventDefault();
+  checkInputs()
+}
+
+const checkInputs = function () {
+  const email = document.querySelector('#email').value;
+  if (email === '') {
+    emailError('This field cannot be empty');
+  } else if (!isEmailValid(email)) {
+    emailError('Please, insert a valid email');
+  } else {
+    errorMessage.textContent = '';
+    newsletter.classList.remove('error');
+  }
+}
+
+const isEmailValid = function (email) {
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+
+const emailError = function (message) {
+  const errorMessage = document.querySelector('.error-message');
+  errorMessage.textContent = message;
+  newsletter.classList.add('error');
+}
+
+newsletter.addEventListener('submit', validateForm);
