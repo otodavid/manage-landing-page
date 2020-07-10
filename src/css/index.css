@@ -450,7 +450,11 @@ footer .logo {
 .attribution a {
     color: hsl(228, 45%, 44%);
     display: inline;
-    font-weight: 500;
+    font-weight: 700;
+}
+
+.attribution a:hover {
+    text-decoration: underline;
 }
 
 
