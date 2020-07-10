@@ -1,58 +1,51 @@
 const mobileMenu = document.querySelector('.mobile-menu');
 const MainNav = document.querySelector('#main-nav');
 const newsletter = document.querySelector('.newsletter');
+const errorMessage = document.querySelector('.error-message');
 
-// show a particular style of swiper depending on screen size
-const mobileSwipper = function () {
-  var swiper = new Swiper('.swiper-container', {
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + '</span>';
-      },
-    },
-  });
-}
-
-const desktopSwipper = function () {
-  var swiper = new Swiper('.swiper-container', {
-    slidesPerView: 2.5,
-    spaceBetween: 30,
-    freeMode: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-  });
-}
-
+// responsive slider for testimonials section
 const swiperStyle = function () { 
-  const width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  if (width < 1000) {
-    MainNav.classList.add('hide');
-    mobileSwipper();
-  } else {
-    desktopSwipper();
-  }
- }
+  var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    // init: false,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 1.4,
+        spaceBetween: 0,
+      },
+      1024: {
+        slidesPerView: 1.8,
+        spaceBetween: 30,
+      },
+      1200: {
+        slidesPerView: 2.5,
+        spaceBetween: 30,
+      },
+    }
+  });
+}
 
 window.addEventListener('load', swiperStyle);
 
+
 // mobile menu
 const toggleMobileMenu = function () {
-  if (MainNav.classList.contains('hide')) {
+  if (!MainNav.classList.contains('show')) {
     MainNav.classList.add('show');
-    MainNav.classList.remove('hide');
     mobileMenu.firstElementChild.src = './images/icon-close.svg';
   } else {
     MainNav.classList.remove('show');
-    MainNav.classList.add('hide');
     mobileMenu.firstElementChild.src = './images/icon-hamburger.svg';
   }
 }
 
 mobileMenu.addEventListener('click', toggleMobileMenu);
+
 
 // validate form
 const validateForm = function (e) {
@@ -61,7 +54,7 @@ const validateForm = function (e) {
 }
 
 const checkInputs = function () {
-  const email = document.querySelector('#email').value;
+  const email = document.querySelector('#email').value.trim();
   if (email === '') {
     emailError('This field cannot be empty');
   } else if (!isEmailValid(email)) {
@@ -77,7 +70,6 @@ const isEmailValid = function (email) {
 }
 
 const emailError = function (message) {
-  const errorMessage = document.querySelector('.error-message');
   errorMessage.textContent = message;
   newsletter.classList.add('error');
 }
